@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COLLECTION</title>
+<style>
+/* Base styles */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgb(253, 222, 222);
+}
+
+.heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 10px;
+}
+
+.input-with-dropdown {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-with-dropdown__input {
+    padding-right: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.input-with-dropdown__select {
+    margin-top: 5px;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="heading">COLLECTION</h1>
+    <form action="/submit-record" method="POST" class="form">
+        <label for="name" class="label">Name:</label>
+        <select id="name" name="name" required class="input-with-dropdown__select"></select>
+
+        <label for="weight" class="label">Weight:</label>
+        <div class="input-with-dropdown">
+            <input type="number" id="weight" name="weight" required class="input-with-dropdown__input">
+            <select id="weightUnit" title="Weight Unit" onchange="updateWeightUnit(this.value)" class="input-with-dropdown__select">
+                <option value="Q1">Q1</option>
+                <option value="Q2">Q2</option>
+            </select>
+        </div>
+
+        <label for="date" class="label">Date:</label>
+        <input type="date" id="date" name="date" required readonly class="input-with-dropdown__input">
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch names from records table on the server
+    fetch('/records')
+        .then(response => response.json())
+        .then(names => {
+            const select = document.getElementById('name');
+            names.forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                select.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching names:', error));
+
+    // Set the default value of the date input field
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    var day = String(now.getDate()).padStart(2, '0');
+    document.getElementById("date").value = `${year}-${month}-${day}`;
+});
+
+function updateWeightUnit(unit) {
+    document.getElementById('weight').value += ' ' + unit;
+}
+
+document.querySelector(".form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch('/submit-record', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        alert(result); // Show response from server
+        // Reset form if needed
+        document.querySelector(".form").reset();
+    })
+    .catch(error => console.error('Error submitting form:', error));
+});
+</script>
+
+</body>
+</html>

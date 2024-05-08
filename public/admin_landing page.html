@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Front Page</title>
+    <link rel="stylesheet" href="./CSS/admin_landing page.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <div class="profile-icon" onclick="toggleSettings()">
+                <img src="profile-icon.png" alt="Profile">
+            </div>
+            <div class="settings" id="settings">
+                <ul>
+                    <li><a href="#">Update Profile Picture</a></li>
+                    <li><a href="#">Change Password</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box" onclick="location.href='Admin_main_menu.html';">
+            COLLECTION
+        </div>
+        <div class="box" onclick="location.href='index.html';">
+            CHECK RECORDS
+        </div>
+        <div class="box" onclick="location.href='Invoice.html';">
+           BILL
+        </div>
+        <div class="box" onclick="location.href='page4.html';">
+            SET THE RATE ACCORDING TO QUALITY AND DATE
+        </div>
+        <div class="box" onclick="location.href='page5.html';">
+            SET THE COMMISSION
+        </div>
+        <div class="box" onclick="location.href='page6.html';">
+            ADVANCE & HISTORY
+        </div>
+        <div class="box" onclick="location.href='page7.html';">
+            cool
+        </div>    
+        
+    </div>
+
+
+    <script>
+        function toggleSettings() {
+            var settings = document.getElementById("settings");
+            settings.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

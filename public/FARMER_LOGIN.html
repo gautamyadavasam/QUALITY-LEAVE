@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #edf2f7;
+        }
+
+        .container {
+            width: 320px;
+            margin: 100px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #4a5568;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #2c69b0;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: #4a90e2;
+            cursor: pointer;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .btn-link:hover {
+            color: #65d18e;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-2xl mb-4">Admin Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required class="rounded-md p-2 border border-gray-300 focus:border-blue-500 focus:outline-none">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required class="rounded-md p-2 border border-gray-300 focus:border-blue-500 focus:outline-none">
+        <button type="submit" class="bg-blue-500 text-white rounded-md py-2 px-4 transition duration-300 ease-in-out hover:bg-blue-600">Login</button>
+    </form>
+    <div id="newAccountSection" class="section">
+        <h2 class="text-lg mb-4">Create a New Account</h2>
+        <form id="newAccountForm">
+            <!-- Your new account form fields here -->
+            <button type="submit" class="bg-green-500 text-white rounded-md py-2 px-4 transition duration-300 ease-in-out hover:bg-green-600">Create Account</button>
+        </form>
+    </div>
+    <div id="forgotPasswordSection" class="section">
+        <h2 class="text-lg mb-4">Forgot Password</h2>
+        <form id="forgotPasswordForm">
+            <label for="email">Enter your email:</label>
+            <input type="text" id="email" name="email" required class="rounded-md p-2 border border-gray-300 focus:border-blue-500 focus:outline-none">
+            <button type="submit" class="bg-yellow-500 text-white rounded-md py-2 px-4 transition duration-300 ease-in-out hover:bg-yellow-600">Recover Password</button>
+        </form>
+    </div>
+    <div class="mt-4">
+        <a href="FARMER_REGISTRATION.html" class="btn-link">Create a new account</a>
+        <button id="showForgotPassword" class="btn-link ml-2">Forgot Password</button>
+    </div>
+</div>
+
+<script>
+    // JavaScript for form handling
+    document.addEventListener("DOMContentLoaded", function() {
+        const loginForm = document.getElementById("loginForm");
+        const newAccountSection = document.getElementById("newAccountSection");
+        const newAccountForm = document.getElementById("newAccountForm");
+        const forgotPasswordSection = document.getElementById("forgotPasswordSection");
+        const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+
+        // Show create new account section
+        document.getElementById("showCreateAccount").addEventListener("click", function() {
+            loginForm.style.display = "none";
+            newAccountSection.style.display = "block";
+            forgotPasswordSection.style.display = "none";
+        });
+
+        // Show forgot password section
+        document.getElementById("showForgotPassword").addEventListener("click", function() {
+            loginForm.style.display = "none";
+            newAccountSection.style.display = "none";
+            forgotPasswordSection.style.display = "block";
+        });
+
+        // Handle login form submission
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Your login form submission logic here
+        });
+
+        // Handle create new account form submission
+        newAccountForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Your new account form submission logic here
+        });
+
+        // Handle forgot password form submission
+        forgotPasswordForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Your forgot password form submission logic here
+        });
+    });
+</script>
+</body>
+</html>

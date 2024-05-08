@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Garden Farmer Registration</title>
+    <link rel="stylesheet" href="FARMER_REGISTRATION.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tea Garden Agent Registration</h1>
+        <form action="/register" method="POST" id="registration_form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+            <label for="kishan_id">Kishan ID:</label>
+            <input type="text" id="kishan_id" name="kishan_id"><br><br>
+            <label for="pickup_time">Pickup Time:</label>
+            <input type="text" id="pickup_time" name="pickup_time" required><br><br>
+            <label for="agent_id">Agent Id</label>
+            <input type="text" name="agent_id" id="agent_id" placeholder="Enter the agent_id" required><br><br>
+            <button type="button" onclick="submitfun()">Register</button>
+        </form>
+    </div>
+    <script>
+        var id_agent = document.getElementById('agent_id');
+
+        function submitfun() {
+            fetch("/admin")
+                .then((response) => response.json())
+                .then((data) => {
+                    var agentFound = data.some((element) => {
+                        return element.user_id == id_agent.value;
+                    });
+                    if (agentFound) {
+                        document.getElementById("registration_form").submit();
+                    } else {
+                        alert('Agent not found!');
+                    }
+                })
+                .catch((error) => console.error("Error fetching names:", error));
+        }
+    </script>
+</body>
+
+</html>

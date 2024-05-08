@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(3, 255, 7, 0.451); /* Adding 3D effect */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Rate container styles */
+.rate-container {
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding 3D effect */
+}
+
+.rate-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.rate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.rate-row input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
+.date-container label {
+    margin-bottom: 5px;
+}
+
+.date-container input {
+    margin-bottom: 10px;
+}
+table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+  </style>
+</head>
+<body>
+    <h2>Monthly Calendar</h2>
+    <div id="calendar"></div>
+
+    <button onclick="prevMonth()">Previous Month</button>
+    <button onclick="nextMonth()">Next Month</button>
+    <button onclick="openAddRateModal()">Add Rate Date</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddRateModal()">&times;</span>
+            <h3>Add Rate Dates</h3>
+            <!-- Rate 1 -->
+            <div class="rate-container">
+                <label for="rate1">Rate 1:</label>
+                <div class="rate-row">
+                    <input type="text" id="rate1" name="rate1" placeholder="Rate 1">
+                    <div class="date-container">
+                        <label for="start_date1">Start Date:</label>
+                        <input type="date" id="start_date1" name="start_date1">
+                    </div>
+                    <div class="date-container">
+                        <label for="end_date1">End Date:</label>
+                        <input type="date" id="end_date1" name="end_date1">
+                    </div>
+                </div>
+            </div>
+            <!-- Rate 2 -->
+            <div class="rate-container">
+                <label for="rate2">Rate 2:</label>
+                <div class="rate-row">
+                    <input type="text" id="rate2" name="rate2" placeholder="Rate 2">
+                    <div class="date-container">
+                        <label for="start_date2">Start Date:</label>
+                        <input type="date" id="start_date2" name="start_date2">
+                    </div>
+                    <div class="date-container">
+                        <label for="end_date2">End Date:</label>
+                        <input type="date" id="end_date2" name="end_date2">
+                    </div>
+                </div>
+            </div>
+            <!-- Rate 3 -->
+            <div class="rate-container">
+                <label for="rate3">Rate 3:</label>
+                <div class="rate-row">
+                    <input type="text" id="rate3" name="rate3" placeholder="Rate 3">
+                    <div class="date-container">
+                        <label for="start_date3">Start Date:</label>
+                        <input type="date" id="start_date3" name="start_date3">
+                    </div>
+                    <div class="date-container">
+                        <label for="end_date3">End Date:</label>
+                        <input type="date" id="end_date3" name="end_date3">
+                    </div>
+                </div>
+            </div>
+            <button onclick="saveRates()">Save</button>
+        </div>
+    </div>
+
+    <script src="app.js">
+document.addEventListener("DOMContentLoaded", function () {
+    const uniqueNames = {};
+    let selectedStartDates = [];
+    let selectedEndDates = {};
+
+    // Fetching names and populating dropdown
+    fetch('/records')
+        .then(response => response.json())
+        .then(names => {
+            const select = document.getElementById('name');
+            names.forEach(name => {
+                if (!uniqueNames[name]) {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = name;
+                    select.appendChild(option);
+                    uniqueNames[name] = true;
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching names:', error));
+});
+
+// Add row function for specific rates
+var rateindex = 0;
+function addRow() {
+    var name = document.getElementById("name").value;
+    var rate = document.getElementById("rate").value;
+    var fromDate = document.getElementById("from").value;
+    var toDate = document.getElementById("to").value;
+
+    if (selectedStartDates.includes(fromDate) || selectedEndDates[toDate]) {
+        alert("Start date or end date already selected for another row.");
+        return;
+    }
+
+    selectedStartDates.push(fromDate);
+    selectedEndDates[toDate] = true;
+
+    fetch('/getrecords')
+        .then(response => response.json())
+        .then(data => {
+            let totalWeight = 0;
+            data.forEach(record => {
+                const recordDate = record.date;
+                if (record.name === name && recordDate >= fromDate && recordDate <= toDate) {
+                    totalWeight += record.weight;
+                } else {
+                    console.log("Error");
+                }
+            });
+            console.log(totalWeight);
+            const tableBody = document.getElementById('rateTable');
+            const newRow = tableBody.insertRow();
+            const rate1 = newRow.insertCell();
+            const rateCell = newRow.insertCell();
+            const startDateCell = newRow.insertCell();
+            const endDateCell = newRow.insertCell();
+            const totalWeightCell = newRow.insertCell();
+            const netAmountCell = newRow.insertCell();
+
+            rate1.innerHTML = `Rate ${++rateindex}`;
+            rateCell.innerHTML = `${rate}`;
+            startDateCell.innerHTML = `${fromDate}`;
+            endDateCell.innerHTML = `${toDate}`;
+            totalWeightCell.innerHTML = `${totalWeight}`;
+            netAmountCell.innerHTML = totalWeight * rate;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Add row function for general rates
+var rateindexGen = 0;
+function addGeneralRow() {
+    var name = document.getElementById("name").value;
+    var rate = document.getElementById("rateGen").value;
+    var fromDate = document.getElementById("Genfrom").value;
+    var toDate = document.getElementById("Gento").value;
+
+    if (selectedStartDates.includes(fromDate) || selectedEndDates[toDate]) {
+        alert("Start date or end date already selected for another row.");
+        return;
+    }
+    selectedStartDates.push(fromDate);
+    selectedEndDates[toDate] = true;
+
+    fetch('/getrecords')
+        .then(response => response.json())
+        .then(data => {
+            let totalWeight = 0;
+            data.forEach(record => {
+                const recordDate = record.date;
+                if (record.name === name && recordDate >= fromDate && recordDate <= toDate) {
+                    totalWeight += record.weight;
+                } else {
+                    console.log("Error");
+                }
+            });
+            console.log(totalWeight);
+            const tableBody = document.getElementById("genTable");
+            const newRow = tableBody.insertRow();
+            const rate1 = newRow.insertCell();
+            const rateCell = newRow.insertCell();
+            const startDateCell = newRow.insertCell();
+            const endDateCell = newRow.insertCell();
+            const totalWeightCell = newRow.insertCell();
+            const netAmountCell = newRow.insertCell();
+
+            rate1.innerHTML = `Rate ${++rateindexGen}`;
+            rateCell.innerHTML = `${rate}`;
+            startDateCell.innerHTML = `${fromDate}`;
+            endDateCell.innerHTML = `${toDate}`;
+            totalWeightCell.innerHTML = `${totalWeight}`;
+            netAmountCell.innerHTML = totalWeight * rate;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+    </script>
+</body>
+</html>
