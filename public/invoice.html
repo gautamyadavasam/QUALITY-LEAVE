@@ -74,7 +74,42 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-top: 50px;
+            position: relative;
         }
+
+        /* New styles for QualityLeaves and GeneralRates */
+        .container > .QualityLeaves, .container > .GeneralRates {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .container > .QualityLeaves {
+            background-color: #f9f9f9;
+        }
+
+        .container > .GeneralRates {
+            background-color: #f0f0f0;
+        }
+
+        .totals {
+            position: center;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .totals input {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -82,53 +117,72 @@
         <h1>Invoice</h1>
         <label for="name">Name:</label>
         <select id="name" name="name"></select><br><br>
+        <div class="QualityLeaves">
+            <h2>Quality Leaves</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rate</th>
+                        <th>Rate for Quality</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Total Weight</th>
+                        <th>Net Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="rateTable">
+                    <!-- Rows dynamically added here -->
+                </tbody>
+            </table>
+            <label for="rate">Rate:</label>
+            <input type="number" id="rate" name="rate">
+            <label for="from">From:</label>
+            <input type="date" id="from">
+            <label for="to">To:</label>
+            <input type="date" id="to">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Rate</th>
-                    <th>Rate for Quality</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Weight</th>
-                    <th>Net Amount</th>
-                </tr>
-            </thead>
-            <tbody id="rateTable">
-                <!-- Rows dynamically added here -->
-            </tbody>
-        </table>
-        <label for="rate">Rate:</label>
-        <input type="number" id="rate" name="rate">
-        <label for="from">From:</label>
-        <input type="date" id="from">
-        <label for="to">To:</label>
-        <input type="date" id="to">
-        
-        <button type="button" onclick="addRow()">Add Row</button>
+            <button type="button" onclick="addRow()">Add Row</button><br> <br>
 
-        <h2>General Rates</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rate for General</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Weight</th>
-                    <th>Net Amount</th>
-                </tr>
-            </thead>
-            <tbody id="genTable">
-                <!-- Rows dynamically added here -->
-            </tbody>
-        </table>
-        <label for="rateGen">Rate:</label>
-        <input type="number" id="rateGen" name="rateGen">
-        <label for="Genfrom">From:</label>
-        <input type="date" id="Genfrom">
-        <label for="Gento">To:</label>
-        <input type="date" id="Gento">
-        <button type="button" onclick="addGeneralRow()">Add Row</button>
+            <label for="totalWeightQL"class="first">Total Weight:</label>
+               <input type="text" id="totalWeightQL" class="first" placeholder="Total Weight">
+
+            <label for="totalAmountQL" class="first">Total Amount:</label>
+               <input type="text" id="totalAmountQL" class="first" placeholder="Total Amount">
+
+        </div>
+        <div class="GeneralRates">
+            <h3>General Rates</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rate for General</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Total Weight</th>
+                        <th>Net Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="genTable">
+                    <!-- Rows dynamically added here -->
+                </tbody>
+            </table>
+            <label for="rateGen">Rate:</label>
+            <input type="number" id="rateGen" name="rateGen">
+            <label for="Genfrom">From:</label>
+            <input type="date" id="Genfrom">
+            <label for="Gento">To:</label>
+            <input type="date" id="Gento">
+            <button type="button" onclick="addGeneralRow()">Add Row</button><br> <br>
+
+            <label for="totalWeightGR" class="last">Total Weight:</label>
+              <input type="text" id="totalWeightGR" class="last" placeholder="Total Weight">
+              
+              <label for="totalAmountGR" class="last">Total Amount:</label>
+              <input type="text" id="totalAmountGR" class="last" placeholder="Total Amount">
+
+        </div>
+
+       
 
         <h2>Totals</h2>
         <p>Total Weight: <input type="text" class="last" placeholder="last"></p>

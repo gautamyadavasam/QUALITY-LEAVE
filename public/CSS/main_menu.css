@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    margin-bottom: 0; /* Remove bottom margin */
+    padding: 20px; /* Add padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #8bc34a; /* leafy green border */
+    border-radius: 10px;
+    background-color: #e1f5fe; /* light blue background */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; /* Add relative positioning */
+}
+
+.box::after {
+    content: ''; /* Add an empty content for pseudo-element */
+    position: absolute; /* Position it absolutely */
+    bottom: -2px; /* Move it below the box */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Adjust height to match border thickness */
+    background-color: transparent; /* Remove the blue line */
+}
+
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
