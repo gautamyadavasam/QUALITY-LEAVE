@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
-    <link rel="stylesheet" href="./CSS/main_menu.css">       
+    <link rel="stylesheet" href="./CSS/main_menu.css">
 </head>
 <body>
     <div class="container">
-        <h1>Main Menu</h1>
-        <div class="options">
-            <div class="box" onclick="location.href='admin_login.html';">
-                <a href="admin_login.html">Admin Login</a>
+        <div class="content-box">
+            <h1>Main Menu</h1>
+            <div class="options">
+                <div class="box-group">
+                    <div class="box" onclick="location.href='admin_login.html';">
+                        <a href="admin_login.html">Admin Login</a>
+                    </div>
+                    <div class="box" onclick="location.href='admin_register.html';">
+                        <a href="admin_register.html">Admin Registration</a>
+                    </div>
+                </div>
+                <div class="box-group">
+                    <div class="box" onclick="location.href='farmer_login.html';">
+                        <a href="farmer_login.html">Farmer Login</a>
+                    </div>
+                    <div class="box" onclick="location.href='farmer_registration.html';">
+                        <a href="farmer_registration.html">Farmer Registration</a>
+                    </div>
+                </div>
             </div>
-            <div class="box" onclick="location.href='admin_register.html';">
-                <a href="admin_register.html">Admin Registration</a>
-            </div>
-            <div class="box" onclick="location.href='farmer_login.html';">
-                <a href="farmer_login.html">Farmer Login</a>
-            </div>
-            <div class="box" onclick="location.href='farmer_registration.html';">
-                <a href="farmer_registration.html">Farmer Registration</a>
-            </div>å
-        </div> 
+        </div>
     </div>
+    
+    <footer>
+        <p>Your Address Here</p>
+    </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
