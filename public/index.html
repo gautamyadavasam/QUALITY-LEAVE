@@ -1,289 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(3, 255, 7, 0.451); /* Adding 3D effect */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Rate container styles */
-.rate-container {
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding 3D effect */
-}
-
-.rate-container label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.rate-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.rate-row input {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.date-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: 10px;
-}
-
-.date-container label {
-    margin-bottom: 5px;
-}
-
-.date-container input {
-    margin-bottom: 10px;
-}
-table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th,
-        td {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            margin-top: 10px;
-        }
-
-  </style>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="https://kit.fontawesome.com/b7514a30f9.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <h2>Monthly Calendar</h2>
-    <div id="calendar"></div>
 
-    <button onclick="prevMonth()">Previous Month</button>
-    <button onclick="nextMonth()">Next Month</button>
-    <button onclick="openAddRateModal()">Add Rate Date</button>
+    <!-- pop up content -->
+    <div class="ra pop center" id="rate-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="rateDown">X</div>
+            <h2>Add Rate</h2>
+            <div class="rate1 center">
+                <div class="vlaue center">
+                    <h3>Rate 1 :</h3>
+                    <input type="number" name="" id="">
+                </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
+                </div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAddRateModal()">&times;</span>
-            <h3>Add Rate Dates</h3>
-            <!-- Rate 1 -->
-            <div class="rate-container">
-                <label for="rate1">Rate 1:</label>
-                <div class="rate-row">
-                    <input type="text" id="rate1" name="rate1" placeholder="Rate 1">
-                    <div class="date-container">
-                        <label for="start_date1">Start Date:</label>
-                        <input type="date" id="start_date1" name="start_date1">
-                    </div>
-                    <div class="date-container">
-                        <label for="end_date1">End Date:</label>
-                        <input type="date" id="end_date1" name="end_date1">
-                    </div>
-                </div>
             </div>
-            <!-- Rate 2 -->
-            <div class="rate-container">
-                <label for="rate2">Rate 2:</label>
-                <div class="rate-row">
-                    <input type="text" id="rate2" name="rate2" placeholder="Rate 2">
-                    <div class="date-container">
-                        <label for="start_date2">Start Date:</label>
-                        <input type="date" id="start_date2" name="start_date2">
-                    </div>
-                    <div class="date-container">
-                        <label for="end_date2">End Date:</label>
-                        <input type="date" id="end_date2" name="end_date2">
-                    </div>
+            <div class="rate2 center">
+                <div class="vlaue center">
+                    <h3>Rate 2 :</h3>
+                    <input type="number" name="" id="">
                 </div>
-            </div>
-            <!-- Rate 3 -->
-            <div class="rate-container">
-                <label for="rate3">Rate 3:</label>
-                <div class="rate-row">
-                    <input type="text" id="rate3" name="rate3" placeholder="Rate 3">
-                    <div class="date-container">
-                        <label for="start_date3">Start Date:</label>
-                        <input type="date" id="start_date3" name="start_date3">
-                    </div>
-                    <div class="date-container">
-                        <label for="end_date3">End Date:</label>
-                        <input type="date" id="end_date3" name="end_date3">
-                    </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
                 </div>
+
             </div>
-            <button onclick="saveRates()">Save</button>
+            <div class="rate3 center">
+                <div class="vlaue center">
+                    <h3>Rate 3 :</h3>
+                    <input type="number" name="" id="">
+                </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
+                </div>
+
+            </div>
+            <button class="btn btn2">SEND</button>
         </div>
     </div>
+    <div class="qu pop center" id="qua-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="quaDown">X</div>
+            <h2>Add Quality</h2>
+            <div class="q qua1 center">
+                <h3>Quality 1</h3>
+                <input type="number" name="" id="">
+            </div>
+            <div class="q qua2 center">
+                <h3>Quality 2</h3>
+                <input type="number" name="" id="">
+            </div>
+            <button class="btn btn2">SEND</button>
+        </div>
+    </div>
+    <div class="comi pop center" id="com-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="comdown">X</div>
+            <h2>Add Commision</h2>
+            <div class=" co center">
+                <h3>Commision per kg :</h3>
+                <input type="number" name="" id="">
+            </div>
+            <button class="btn btn2">SEND</button>
+        </div>
+    </div>
+    <div class="rec pop center" id="rec-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="recDown">X</div>
+            <h2>Add New Record</h2>
+            <form class="recont center" action="/submit-record" method="POST" id="myForm">
 
-    <script src="app.js">
-document.addEventListener("DOMContentLoaded", function () {
-    const uniqueNames = {};
-    let selectedStartDates = [];
-    let selectedEndDates = {};
+                <div class="vu"><label for="name">Name:</label>
+                    <select id="name" name="name" required></select>
+                </div><br>
 
-    // Fetching names and populating dropdown
-    fetch('/records')
-        .then(response => response.json())
-        .then(names => {
-            const select = document.getElementById('name');
-            names.forEach(name => {
-                if (!uniqueNames[name]) {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    select.appendChild(option);
-                    uniqueNames[name] = true;
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching names:', error));
-});
 
-// Add row function for specific rates
-var rateindex = 0;
-function addRow() {
-    var name = document.getElementById("name").value;
-    var rate = document.getElementById("rate").value;
-    var fromDate = document.getElementById("from").value;
-    var toDate = document.getElementById("to").value;
+                <div class="vu"><label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div><br>
 
-    if (selectedStartDates.includes(fromDate) || selectedEndDates[toDate]) {
-        alert("Start date or end date already selected for another row.");
-        return;
-    }
+                <div class="vu"><label for="weight">Weight:</label>
+                    <input type="number" id="weight" name="weight" required>
+                </div><br>
 
-    selectedStartDates.push(fromDate);
-    selectedEndDates[toDate] = true;
+                <div class="vu"><label for="quality">Quality:</label>
+                    <input type="number" id="quality" name="quality" required>
+                </div><br>
+                <button class="btn btn2" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- end of pop ----------------------------------->
+    <div class="header center" id="top">
+        <div class="headleft center">
+            <div class="logo center" id="logo">L</div>
+            <h2>Dashboard</h2>
+        </div>
+        <div class="headright center">
+            <div class="mode center">
+                <div class="switch">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="icon fai center"><i class="fa-solid fa-bell"></i></div>
+            <div class="icon center"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+        </div>
+    </div>
+    <div class="details">
+        <div class="profile center">
+            <h4>Profile</h4>
+            <div class="dp center">DP</div>
+            <h3 id="agent-name">Sam</h3>
+        </div>
+        <div class="cont">
+            <div class="info center">
+                <div class="far-info box center">
+                    <h4>Farmers</h4>
+                    <h1>09</h1>
+                </div>
+                <div class="weight-info box center">
+                    <h4>Weight</h4>
+                    <h1>156</h1>
+                </div>
+            </div>
+            <div class="month center">
+                <h3 id="mtn"></h3>
+                <div class="month-btn center">
+                    <button class="left btn center" onclick="prevMonth()">
+                        <h3><</h3>
+                    </button>
+                    <button class="right btn center" onclick="nextMonth()">
+                        <h3>></h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="crq-cont center">
+            <div class="rate center hol" id="AddRate">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Rate</h3>
+            </div>
 
-    fetch('/getrecords')
-        .then(response => response.json())
-        .then(data => {
-            let totalWeight = 0;
-            data.forEach(record => {
-                const recordDate = record.date;
-                if (record.name === name && recordDate >= fromDate && recordDate <= toDate) {
-                    totalWeight += record.weight;
-                } else {
-                    console.log("Error");
-                }
-            });
-            console.log(totalWeight);
-            const tableBody = document.getElementById('rateTable');
-            const newRow = tableBody.insertRow();
-            const rate1 = newRow.insertCell();
-            const rateCell = newRow.insertCell();
-            const startDateCell = newRow.insertCell();
-            const endDateCell = newRow.insertCell();
-            const totalWeightCell = newRow.insertCell();
-            const netAmountCell = newRow.insertCell();
+            <div class="qul center hol" id="AddQua">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Rate of Quality</h3>
+            </div>
+            <div class="com center hol" id="AddCom">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Commision</h3>
+            </div>
+        </div>
+        <div class="pr-cont center">
+            <div class="record center">
+                <div class="pluse2 a center" id="addrecord">
+                    <h3>+</h3>
+                    <h4>Add Record</h4>
+                </div>
+                <div class="pluse2 b center">
+                    <h3>-</h3>
+                    <h4>Delete Record</h4>
+                </div>
+            </div>
+            <div class="paycont center">
+                <div class="payicon pluse center"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <h3>Add Payment Detail</h3>
+            </div>
+        </div>
 
-            rate1.innerHTML = `Rate ${++rateindex}`;
-            rateCell.innerHTML = `${rate}`;
-            startDateCell.innerHTML = `${fromDate}`;
-            endDateCell.innerHTML = `${toDate}`;
-            totalWeightCell.innerHTML = `${totalWeight}`;
-            netAmountCell.innerHTML = totalWeight * rate;
-        })
-        .catch(error => console.error('Error:', error));
-}
+    </div>
 
-// Add row function for general rates
-var rateindexGen = 0;
-function addGeneralRow() {
-    var name = document.getElementById("name").value;
-    var rate = document.getElementById("rateGen").value;
-    var fromDate = document.getElementById("Genfrom").value;
-    var toDate = document.getElementById("Gento").value;
+    <div id="calendar"></div>
 
-    if (selectedStartDates.includes(fromDate) || selectedEndDates[toDate]) {
-        alert("Start date or end date already selected for another row.");
-        return;
-    }
-    selectedStartDates.push(fromDate);
-    selectedEndDates[toDate] = true;
+    <script src="app.js"></script>
 
-    fetch('/getrecords')
-        .then(response => response.json())
-        .then(data => {
-            let totalWeight = 0;
-            data.forEach(record => {
-                const recordDate = record.date;
-                if (record.name === name && recordDate >= fromDate && recordDate <= toDate) {
-                    totalWeight += record.weight;
-                } else {
-                    console.log("Error");
-                }
-            });
-            console.log(totalWeight);
-            const tableBody = document.getElementById("genTable");
-            const newRow = tableBody.insertRow();
-            const rate1 = newRow.insertCell();
-            const rateCell = newRow.insertCell();
-            const startDateCell = newRow.insertCell();
-            const endDateCell = newRow.insertCell();
-            const totalWeightCell = newRow.insertCell();
-            const netAmountCell = newRow.insertCell();
-
-            rate1.innerHTML = `Rate ${++rateindexGen}`;
-            rateCell.innerHTML = `${rate}`;
-            startDateCell.innerHTML = `${fromDate}`;
-            endDateCell.innerHTML = `${toDate}`;
-            totalWeightCell.innerHTML = `${totalWeight}`;
-            netAmountCell.innerHTML = totalWeight * rate;
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-    </script>
 </body>
+
 </html>

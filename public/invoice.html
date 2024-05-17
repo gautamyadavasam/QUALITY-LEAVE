@@ -4,113 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        input[type="date"], input[type="number"], input[type="text"] {
-            width: 100px;
-            padding: 8px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .last {
-            width: 100%;
-            padding: 8px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        /* New styles for QualityLeaves and GeneralRates */
-        .container > .QualityLeaves, .container > .GeneralRates {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .container > .QualityLeaves {
-            background-color: #f9f9f9;
-        }
-
-        .container > .GeneralRates {
-            background-color: #f0f0f0;
-        }
-
-        .totals {
-            position: center;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .totals input {
-            width: 150px;
-            margin-bottom: 10px;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="./CSS/invoice.css">
 </head>
 <body>
     <div class="container">
@@ -191,9 +85,12 @@
         <p>Previous Unpaid Amount: <input type="text" class="last" placeholder="last"></p>
         <p>Paid Amount: <input type="text" class="last" placeholder="last"></p>
         <p>Unpaid Amount: <input type="text" class="last" placeholder="last"></p>
-        <button type="button">Save</button>
-        <button type="button">Print</button>
+        <button id="save">Save</button>
+        <button id="print">Print</button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.1.1/jspdf.plugin.autotable.min.js"></script>
     <script src="invoice-app.js"></script>
 </body>
 </html>
