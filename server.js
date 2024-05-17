@@ -44,17 +44,17 @@ function getCurrentDate() {
 
 // Handle form submission to save data to records table
 app.post('/submit-record', (req, res) => {
-    const { name, date, weight } = req.body;
+    const { name, date, weight, quality} = req.body;
 
     // Check if all required fields are provided
-    if (!name || !date || !weight) {
-        res.status(400).json({ error: 'Name, date, and weight are required fields' });
-        return;
-    }
+    // if (!name || !date || !weight || !quality) {
+    //     res.status(400).json({ error: 'Name, date, weight,quality are required fields' });
+    //     return;
+    // }
 
     // Insert data into the records table
-    const sql = 'INSERT INTO records (name, date, weight) VALUES (?, ?, ?)';
-    connection.query(sql, [name, date, weight], (err, result) => {
+    const sql = 'INSERT INTO records (name, date, weight, quality) VALUES (?, ?, ?, ?)';
+    connection.query(sql, [name, date, weight, quality], (err, result) => {
         if (err) {
             console.error('Error saving data to MySQL:', err);
             res.status(500).json({ error: 'An error occurred while saving the data.' });

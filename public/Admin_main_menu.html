@@ -58,21 +58,7 @@ function updateWeightUnit(unit) {
     document.getElementById('weight').value += ' ' + unit;
 }
 
-document.querySelector(".form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    fetch('/submit-record', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(result => {
-        alert(result); // Show response from server
-        // Reset form if needed
-        document.querySelector(".form").reset();
-    })
-    .catch(error => console.error('Error submitting form:', error));
-});
+
 </script>
 
 </body>
