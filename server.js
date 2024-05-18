@@ -46,11 +46,6 @@ function getCurrentDate() {
 app.post('/submit-record', (req, res) => {
     const { name, date, weight, quality} = req.body;
 
-    // Check if all required fields are provided
-    // if (!name || !date || !weight || !quality) {
-    //     res.status(400).json({ error: 'Name, date, weight,quality are required fields' });
-    //     return;
-    // }
 
     // Insert data into the records table
     const sql = 'INSERT INTO records (name, date, weight, quality) VALUES (?, ?, ?, ?)';
@@ -63,7 +58,9 @@ app.post('/submit-record', (req, res) => {
 
         console.log('Data saved to records table');
         // res.json({ message: 'Data saved successfully!' });
+
     });
+
 });
 
 // Fetch records from the records table

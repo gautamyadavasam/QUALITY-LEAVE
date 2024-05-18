@@ -1,73 +1,342 @@
-body {
+:root {
+    --Bg-color: #000000;
+    --text-color: #ffffff;
+    --transparent: transparent;
+    --agentcolor: #eaf9e1;
+    --agentw: 700px;
+    --farmercolor: #0d6d00;
+    /* --width:1535px; */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    color: var(--text-color);
 }
 
-.container {
+.cen {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hearder {
+    position: fixed;
+    width: 100%;
+    margin-top: 5px;
+    justify-content: space-between;
+    background-color: var(--transparent);
+}
+
+.logo-cont img {
+    width: 60px;
+    margin: 5px 10px 0;
+    background-color: var(--transparent);
+}
+
+.link-cont {
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.dir,
+.dirReg {
+    list-style: none;
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 0 10px;
+    position: relative;
+    background-color: var(--transparent);
+}
+
+.dirReg {
+    height: 40px;
+    padding: 0 5px;
+    margin: 0 2px;
+    background-color: #81cd2b;
+    color: #000;
+    border: #ffffff 2px solid;
+    border-radius: 10px;
+    font-size: medium;
+}
+
+.dir::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.dir:hover::before {
+    visibility: visible;
+    width: 110%;
+}
+
+
+/* ---------container--------- */
+.container {
+    height: 100vh;
+    background-image: linear-gradient(#000000f6, #00000087, #000000), url(/public/Img/bgimg.jpeg);
+    background-position: center;
+    background-size: cover;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-left: 30px;
+}
+
+.container h1 {
+    margin-bottom: 30px;
+    font-size: 100px;
+    font-family: "Oswald";
+    position: relative;
+    z-index: 10;
+}
+
+.container h1::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: 6px;
+    height: 115px;
+    background-color: var(--farmercolor);
+    animation: font 2s ease-in-out 1s 1 normal forwards;
+}
+
+.container p {
+    width: 1000px;
+    margin-bottom: 40px;
+    line-height: 23px;
+    text-indent: 25px;
+    letter-spacing: 1.2px;
+}
+
+.container .dirReg {
+    margin-left: 50px;
+}
+
+.agent_reg {
+    background-color: var(--Bg-color);
     height: 100vh;
 }
 
-.content-box {
-    width: 80%;
-    background-color: #fff;
-    padding: 20px;
+.agent_cont {
+    width: var(--agentw);
+    height: 400px;
+    background-color: var(--agentcolor);
+    border-radius: 30px;
+}
+
+.agent_login {
+    width: calc(var(--agentw) / 2);
+    height: 400px;
+}
+
+.agent_acc {
+    width: calc(var(--agentw) / 2);
+    height: 400px;
+    background-color: #0d6d00;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.alogin_form,
+.agent_login {
+    flex-direction: column;
+    gap: 25px;
+}
+
+.alogin_form input {
+    width: 250px;
+    height: 30px;
+    border: #8b8b8b solid 2px;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #000;
+    outline: none;
+}
+
+.alogin_form button:hover {
+    transform: scale(1.1);
+}
+
+.agent_login h1,
+.agent_login a {
+    color: #0d6d00;
+
+}
+
+.agent_login .btn1 {
+    width: 100px;
+    height: 30px;
+    color: #000;
+    background-color: #05ea18;
+    outline: none;
+    border: none;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    text-align: center;
-    margin-top: -20px;
-}
-
-h1 {
-    color: #333;
-}
-
-.options {
-    margin-top: 20px;
-}
-
-.box-group {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.box {
-    width: 200px;
-    height: 80px;
-    background-color: #81c784; /* Light green color */
-    border-radius: 10px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: all ease-in-out;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
 }
 
-.box a {
-    text-decoration: none;
-    color: #333; /* Dark text color */
-    font-size: 18px;
+
+.alog .btn1 {
+    border: #000000 solid 2px;
 }
 
-.box:hover {
-    background-color: #4caf50; /* Darker green color on hover */
-    transform: translateY(-5px); /* Move the box up by 5 pixels on hover */
+.ex {
+    margin-top: 10px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+
+
+/*--------farmer------ */
+.farmer_reg {
+    background-color: var(--Bg-color);
+    height: 100vh;
+}
+
+.farmer_cont {
+    width: var(--agentw);
+    height: 400px;
+    background-color: var(--farmercolor);
+    border-radius: 30px;
+}
+
+.farmer_login {
+    width: calc(var(--agentw) / 2);
+    height: 400px;
+}
+
+.farmer_acc {
+    width: calc(var(--agentw) / 2);
+    height: 400px;
+    background-color: var(--agentcolor);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.flogin_form,
+.farmer_login {
+    flex-direction: column;
+    gap: 25px;
+}
+
+.flogin_form input {
+    width: 250px;
+    height: 30px;
+    border: #000000 solid 2px;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #000;
+    outline: none;
+}
+
+.flogin_form button:hover {
+    transform: scale(1.1);
+}
+
+.farmer_login h1,
+.farmer_login a {
+    color: var(--agentcolor);
+}
+
+.farmer_login h2,
+.farmer_login p {
+    color: var(--farmercolor);
+}
+
+.farmer_login .btn1,
+.freg .btn1 {
+    width: 100px;
+    height: 30px;
+    color: #000;
+    background-color: #05ea18;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    transition: all ease-in-out;
+    cursor: pointer;
+}
+
+.freg .btn1 {
+    border: #000000 solid 2px;
+}
+
+
+/* ----footer-----  */
+
+.footer {
+    height: 250px;
+    background: linear-gradient(#000000, #010455);
+    gap: 20px;
+}
+
+.logocont img {
+    width: 90px;
+    margin: 5px 10px 0;
+    background-color: var(--transparent);
+}
+
+.sep {
+    height: 100px;
+    width: 2px;
+    border-radius: 100%;
+    background-color: #fff;
+}
+
+.logocont h3 {
+    color: #81cd2b;
+}
+
+.contact_info {
+    width: 1000px;
+    justify-content: space-around;
+}
+
+.contact_info ul {
+    gap: 10px;
+    font-size: small;
+}
+
+.contact_info li {
+    list-style: none;
+}
+
+.icon_holder {
+    gap: 15px;
+}
+
+.fa-brands {
+    font-size: 25px;
+}
+
+.center {
+    background-color: #010455;
+    padding-bottom: 5px;
+}
+
+
+/* ----animation------- */
+
+@keyframes font {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }

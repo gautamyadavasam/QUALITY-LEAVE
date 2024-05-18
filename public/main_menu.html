@@ -1,40 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Menu</title>
-    <link rel="stylesheet" href="./CSS/main_menu.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="https://kit.fontawesome.com/b7514a30f9.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div class="container">
-        <div class="content-box">
-            <h1>Main Menu</h1>
-            <div class="options">
-                <div class="box-group">
-                    <div class="box" onclick="location.href='admin_login.html';">
-                        <a href="admin_login.html">Admin Login</a>
-                    </div>
-                    <div class="box" onclick="location.href='admin_register.html';">
-                        <a href="admin_register.html">Admin Registration</a>
-                    </div>
+
+    <!-- pop up content -->
+    <div class="ra pop center" id="rate-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="rateDown">X</div>
+            <h2>Add Rate</h2>
+            <div class="rate1 center">
+                <div class="vlaue center">
+                    <h3>Rate 1 :</h3>
+                    <input type="number" name="" id="">
                 </div>
-                <div class="box-group">
-                    <div class="box" onclick="location.href='farmer_login.html';">
-                        <a href="farmer_login.html">Farmer Login</a>
-                    </div>
-                    <div class="box" onclick="location.href='farmer_registration.html';">
-                        <a href="farmer_registration.html">Farmer Registration</a>
-                    </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
+                </div>
+
+            </div>
+            <div class="rate2 center">
+                <div class="vlaue center">
+                    <h3>Rate 2 :</h3>
+                    <input type="number" name="" id="">
+                </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
+                </div>
+
+            </div>
+            <div class="rate3 center">
+                <div class="vlaue center">
+                    <h3>Rate 3 :</h3>
+                    <input type="number" name="" id="">
+                </div>
+                <div class="date center">
+                    <h3>Start date :</h3>
+                    <input type="date" name="" id="">
+                    <h3>End date :</h3>
+                    <input type="date" name="" id="">
+                </div>
+
+            </div>
+            <button class="btn btn2">SEND</button>
+        </div>
+    </div>
+    <div class="qu pop center" id="qua-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="quaDown">X</div>
+            <h2>Add Quality</h2>
+            <div class="q qua1 center">
+                <h3>Quality 1</h3>
+                <input type="number" name="" id="">
+            </div>
+            <div class="q qua2 center">
+                <h3>Quality 2</h3>
+                <input type="number" name="" id="">
+            </div>
+            <button class="btn btn2">SEND</button>
+        </div>
+    </div>
+    <div class="comi pop center" id="com-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="comdown">X</div>
+            <h2>Add Commision</h2>
+            <div class=" co center">
+                <h3>Commision per kg :</h3>
+                <input type="number" name="" id="">
+            </div>
+            <button class="btn btn2">SEND</button>
+        </div>
+    </div>
+    <div class="rec pop center" id="rec-pop">
+        <div class="cont-pop center">
+            <div class="exit center" id="recDown">X</div>
+            <h2>Add New Record</h2>
+            <form class="recont center" action="/submit-record" method="POST" id="myForm">
+
+                <div class="vu"><label for="name">Name:</label>
+                    <select id="name" name="name" required></select>
+                </div><br>
+
+
+                <div class="vu"><label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div><br>
+
+                <div class="vu"><label for="weight">Weight:</label>
+                    <input type="number" id="weight" name="weight" required>
+                </div><br>
+
+                <div class="vu"><label for="quality">Quality:</label>
+                    <input type="number" id="quality" name="quality" required>
+                </div><br>
+                <button class="btn btn2" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- end of pop ----------------------------------->
+    <div class="header center" id="top">
+        <div class="headleft center">
+            <div class="logo center" id="logo">L</div>
+            <h2>Dashboard</h2>
+        </div>
+        <div class="headright center">
+            <div class="mode center">
+                <div class="switch">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="icon fai center"><i class="fa-solid fa-bell"></i></div>
+            <div class="icon center"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+        </div>
+    </div>
+    <div class="details">
+        <div class="profile center">
+            <h4>Profile</h4>
+            <div class="dp center">DP</div>
+            <h3 id="agent-name">Sam</h3>
+        </div>
+        <div class="cont">
+            <div class="info center">
+                <div class="far-info box center">
+                    <h4>Farmers</h4>
+                    <h1>09</h1>
+                </div>
+                <div class="weight-info box center">
+                    <h4>Weight</h4>
+                    <h1>156</h1>
+                </div>
+            </div>
+            <div class="month center">
+                <h3 id="mtn"></h3>
+                <div class="month-btn center">
+                    <button class="left btn center" onclick="prevMonth()">
+                        <h3><</h3>
+                    </button>
+                    <button class="right btn center" onclick="nextMonth()">
+                        <h3>></h3>
+                    </button>
                 </div>
             </div>
         </div>
+        <div class="crq-cont center">
+            <div class="rate center hol" id="AddRate">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Rate</h3>
+            </div>
+
+            <div class="qul center hol" id="AddQua">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Rate of Quality</h3>
+            </div>
+            <div class="com center hol" id="AddCom">
+                <div class="pluse center">
+                    <h3>+</h3>
+                </div>
+                <h3>Add Commision</h3>
+            </div>
+        </div>
+        <div class="pr-cont center">
+            <div class="record center">
+                <div class="pluse2 a center" id="addrecord">
+                    <h3>+</h3>
+                    <h4>Add Record</h4>
+                </div>
+                <div class="pluse2 b center">
+                    <h3>-</h3>
+                    <h4>Delete Record</h4>
+                </div>
+            </div>
+            <div class="paycont center">
+                <div class="payicon pluse center"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <h3>Add Payment Detail</h3>
+            </div>
+        </div>
+
     </div>
-    
-    <footer>
-        <p>Your Address Here</p>
-    </footer>
-    
-    <script src="script.js"></script>
+
+    <div id="calendar"></div>
+
+    <script src="app.js"></script>
+
 </body>
+
 </html>
